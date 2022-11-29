@@ -5,10 +5,11 @@ export default function Blogpage(props) {
     
     const [comments, setComments] = React.useState([]);
 
+    //Using reverse method to show most recent comment at top aka end of array
     React.useEffect(() => {
         fetch(`http://localhost:3000/posts/${props.id}/comments`)
         .then(res => res.json())
-        .then(data => setComments(data.comments))
+        .then(data => setComments(data.comments.reverse()))
     }, [])
     const commentElements = comments.map(comment => {
         return <Comment 
@@ -42,10 +43,7 @@ export default function Blogpage(props) {
             return commentsArray;
         })
     }
-
-    console.log('rerendered');
-    console.log(comments);
-
+    
     return (
         <div>
             <h2>{props.title}</h2>
