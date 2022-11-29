@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import Comment from './components/comment';
 export default function Blogpage(props) {
     
@@ -27,6 +28,14 @@ export default function Blogpage(props) {
             //Therefore you must make it a string or else you get errors -_-
             timestamp: `${new Date()}`
         }
+
+        //Axios doesn't send data by default as a url-encoded body
+        //https://axios-http.com/docs/urlencoded
+        //Solution found above ^
+        const params = new URLSearchParams();
+        params.append('username', e.target.username.value);
+        params.append('comment', e.target.comment.value);
+        axios.post(`http://localhost:3000/posts/${props.id}/comments`, params);
 
         setComments(prevComments => {
             const commentsArray = [newComment, ...prevComments];
