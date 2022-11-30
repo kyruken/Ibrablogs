@@ -15,7 +15,7 @@ function App() {
   }, [])
 
   const blogElements = blogs.map(blog => {
-    return <Link to={`posts/${blog._id}`}>
+    return <Link to={`${blog._id}`}>
       <Blog
         body={blog.body}
         comments={blog.comments}
@@ -23,7 +23,8 @@ function App() {
         title={blog.title}
         key={blog._id}
         id={blog._id}
-        handleClick={() => handleClick(blog._id)}></Blog>
+        >
+        </Blog>
     </Link>
   })
 
