@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import Comment from './components/comment';
 export default function Blogpage() {
     
@@ -57,6 +57,7 @@ export default function Blogpage() {
     
     return (
         <div>
+            <Link to='/'>Back</Link>
             <h2>{blog.title}</h2>
             <p>{blog.body}</p>
             <p>{blog.timestamp}</p>
