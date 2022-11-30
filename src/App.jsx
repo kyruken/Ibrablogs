@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css'
 import Header from './components/header';
 import Blog from './components/blog';
-import Blogpage from './Blogpage';
 import { Link } from 'react-router-dom';
 function App() {
   const [blogs, setBlogs] = React.useState([]);
@@ -32,9 +31,6 @@ function App() {
     <div className="App">
       <Header></Header>
       {blogElements}
-      {/* {currentPage === "Blogpage" && <button onClick={backClick}>Back</button>} */}
-      {/* {currentPage === "Homepage" && blogElements}
-      {currentPage === "Blogpage" && blogPage} */}
     </div>
   )
 }

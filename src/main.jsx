@@ -26,7 +26,6 @@ const router = createBrowserRouter([
     path: '/posts/:postId',
     element: <Blogpage />
   }
-
 ])
 ReactDOM.createRoot(document.getElementById('root')).render(
   <RouterProvider router={router} />
