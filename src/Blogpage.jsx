@@ -1,21 +1,32 @@
 import React from 'react';
 import axios from 'axios';
+import { useParams, Link } from 'react-router-dom';
 import Comment from './components/comment';
-export default function Blogpage(props) {
+export default function Blogpage() {
     
+    //useParams allows us to grab url params
+    const id = useParams().postId;
+    const [blog, setBlog] = React.useState([]);
     const [comments, setComments] = React.useState([]);
 
     //Using reverse method to show most recent comment at top aka end of array
     React.useEffect(() => {
-        fetch(`http://localhost:3000/posts/${props.id}/comments`)
-        .then(res => res.json())
-        .then(data => setComments(data.comments.reverse()))
+        Promise.all([
+            fetch(`http://localhost:3000/posts/${id}`)
+            .then(res => res.json()),
+            fetch(`http://localhost:3000/posts/${id}/comments`)
+            .then(res => res.json())
+        ]).then(data => {
+            setBlog(data[0].post);
+            setComments(data[1].comments.reverse());
+        })
     }, [])
     const commentElements = comments.map(comment => {
         return <Comment 
             comment={comment.comment}
             username={comment.username}
             timestamp={comment.timestamp}
+            key={comment._id}
         />
     })
 
@@ -36,7 +47,7 @@ export default function Blogpage(props) {
         const params = new URLSearchParams();
         params.append('username', e.target.username.value);
         params.append('comment', e.target.comment.value);
-        axios.post(`http://localhost:3000/posts/${props.id}/comments`, params);
+        axios.post(`http://localhost:3000/posts/${id}/comments`, params);
 
         setComments(prevComments => {
             const commentsArray = [newComment, ...prevComments];
@@ -46,11 +57,12 @@ export default function Blogpage(props) {
     
     return (
         <div>
-            <h2>{props.title}</h2>
-            <p>{props.body}</p>
-            <p>{props.timestamp}</p>
+            <Link to='/'>Back</Link>
+            <h2>{blog.title}</h2>
+            <p>{blog.body}</p>
+            <p>{blog.timestamp}</p>
             <h3>Post a comment</h3>
-            <form method='POST' action={`http://localhost:3000/posts/${props.id}/comments`} onSubmit={handleSubmit}>
+            <form method='POST' action={`http://localhost:3000/posts/${id}/comments`} onSubmit={handleSubmit}>
                 <input type='text' name='username' id='username' placeholder='Username'/>
                 <input type='text' name='comment' id='comment' placeholder='Comment'/>
                 <button type='submit'>Submit</button>
