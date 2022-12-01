@@ -1,4 +1,8 @@
-
+/* Resets */
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+}
 
 /* Global styles */
 :root {
@@ -28,6 +32,10 @@ h1 {
 
 h2 {
     font-size: 2.5rem;
+}
+
+h3 {
+    font-size: 1.8rem;
 }
 
 ul, li {
@@ -102,8 +110,8 @@ ul, li {
 }
 
 .padding-lr-5 {
-    padding-left: 9rem;
-    padding-right: 9rem;
+    padding-left: 13rem;
+    padding-right: 13rem;
 }
 
 .padding-tb-1 {
@@ -138,7 +146,7 @@ header h1 {
 .blog-container {
     background-color: var(--primary-bg-color);
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    row-gap: 2rem;
+    row-gap: 1.8rem;
 }
 
 /* ^ Home page ^ */
@@ -148,6 +156,7 @@ header h1 {
 .blog {
     background-color: var(--secondary-bg-color);
     border-radius: 10px;
-    width: 300px;
-    height: 250px;
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.8);
+    width: 250px;
+    height: 200px;
 }
