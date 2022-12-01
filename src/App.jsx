@@ -30,7 +30,10 @@ function App() {
   return (
     <div className="App">
       <Header></Header>
-      <div class="grid grid-center blog-container padding-lr-5 padding-tb-1">{blogElements}</div>
+      <div className='flex-row flex-center'>
+        <h2>Blogs</h2>
+      </div>
+      <div className="grid grid-center blog-container padding-lr-5 padding-tb-1">{blogElements}</div>
     </div>
   )
 }
