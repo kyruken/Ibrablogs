@@ -3,6 +3,7 @@
 /* Global styles */
 :root {
     --text-color-primary: #000;
+    --text-color-secondary: rgb(75, 72, 72);
     --primary-bg-color: #faf9f3;
     --secondary-bg-color: #fff;
     --third-bg-color: hsl(0, 2%, 12%);
@@ -25,8 +26,25 @@ h1 {
     font-size: 6rem;
 }
 
+h2 {
+    font-size: 2.5rem;
+}
+
+ul, li {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
 
 /* Custom classes */
+
+.bold {
+    font-weight: 600;
+}
+
+.border-bottom {
+    border-bottom: 1.5px solid black;
+}
 
 .flex-row {
     display: flex;
@@ -40,6 +58,14 @@ h1 {
 .flex-center {
     justify-content: center;
     align-items: center;
+}
+
+.flex-gap-1 {
+    gap: 6.5rem;
+}
+
+.font-size-1 {
+    font-size: 1.1rem;
 }
 
 .grid {
@@ -90,6 +116,9 @@ h1 {
     padding-bottom: 2.5rem;
 }
 
+.secondary-text-color {
+    color: var(--text-color-secondary);
+}
 /* ^ Custom classes ^ */
 
 /* Page Styles */
@@ -97,7 +126,6 @@ h1 {
 /* Header */
 header {
     font-family: Tahoma;
-    border-bottom: 1.5px solid black;
 }
 
 header h1 {
