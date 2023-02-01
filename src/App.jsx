@@ -7,7 +7,7 @@ function App() {
   const [blogs, setBlogs] = React.useState([]);
 
   React.useEffect(() => {
-    fetch('http://localhost:3000/posts')
+    fetch(`${import.meta.env.VITE_API}/posts`)
       .then(response => response.json())
       .then(data => setBlogs(data.posts));
 

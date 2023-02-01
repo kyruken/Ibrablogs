@@ -12,9 +12,9 @@ export default function Blogpage() {
     //Using reverse method to show most recent comment at top aka end of array
     React.useEffect(() => {
         Promise.all([
-            fetch(`http://localhost:3000/posts/${id}`)
+            fetch(`${import.meta.env.VITE_API}/posts/${id}`)
             .then(res => res.json()),
-            fetch(`http://localhost:3000/posts/${id}/comments`)
+            fetch(`${import.meta.env.VITE_API}/posts/${id}/comments`)
             .then(res => res.json())
         ]).then(data => {
             setBlog(data[0].post);
@@ -58,17 +58,24 @@ export default function Blogpage() {
     return (
         <div>
             <Link to='/'>Back</Link>
-            <h2>{blog.title}</h2>
-            <p>{blog.body}</p>
-            <p>{blog.timestamp}</p>
-            <h3>Post a comment</h3>
-            <form method='POST' action={`http://localhost:3000/posts/${id}/comments`} onSubmit={handleSubmit}>
-                <input type='text' name='username' id='username' placeholder='Username'/>
-                <input type='text' name='comment' id='comment' placeholder='Comment'/>
-                <button type='submit'>Submit</button>
-            </form>
-            <h3>Comments</h3>
-            {commentElements}
+            <div className='flex-column flex-center'>
+                <div className='blog-post padding-all-2'>
+                    <div className='blog-main'>
+                        <h2>{blog.title}</h2>
+                        <p>{blog.body}</p>
+                        <p>{blog.timestamp}</p>
+                    </div>
+                    <div className='flex-column flex-center'>
+                        <h3>Post a comment</h3>
+                        <form className='padding-tb-1' method='POST' action={`http://localhost:3000/posts/${id}/comments`} onSubmit={handleSubmit}>
+                            <input type='text' name='username' id='username' placeholder='Username'/>
+                            <input type='text' name='comment' id='comment' placeholder='Comment'/>
+                            <button type='submit'>Submit</button>
+                        </form>
+                        <div>{commentElements}</div>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
